@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h2 class="mb-4">Biz bilan bog'laning</h2>
+
+    <!-- Xabarlarni ko'rsatish -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      
+      <!-- Ism -->
+      <div class="mb-3">
+        <label for="id_name" class="form-label">{{ form.name.label }}</label>
+        {{ form.name }}
+        {% for error in form.name.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="id_email" class="form-label">{{ form.email.label }}</label>
+        {{ form.email }}
+        {% for error in form.email.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <!-- Xabar -->
+      <div class="mb-3">
+        <label for="id_message" class="form-label">{{ form.message.label }}</label>
+        {{ form.message }}
+        {% for error in form.message.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Yuborish</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

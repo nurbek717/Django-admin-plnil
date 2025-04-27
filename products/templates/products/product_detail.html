@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}" />
+    {% endif %}
+  </div>
+  <div class="col-md-6">
+    <h1>{{ product.name }}</h1>
+    <p class="lead">{{ product.description }}</p>
+    <p><strong>Narx:</strong> {{ product.price }} so'm</p>
+    <p><strong>Kategoriya:</strong> {{ product.category }}</p>
+    <p><strong>Qolgan soni:</strong> {{ product.stock }}</p>
+    <p>
+      <strong>Yaratilgan sana:</strong> {{ product.created_at|date:"d.m.Y" }}
+    </p>
+    <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Orqaga</a>
+  </div>
+</div>
+{% endblock %}
